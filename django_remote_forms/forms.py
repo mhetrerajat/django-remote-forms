@@ -160,6 +160,8 @@ class RemoteForm(object):
 
             initial_data[name] = form_dict['fields'][name]['initial']
 
+        # print(self.form.data, initial_data)
+
         if self.form.data:
             form_dict['data'] = self.form.data
         else:

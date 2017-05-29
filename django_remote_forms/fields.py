@@ -241,7 +241,13 @@ class RemoteMultiValueField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteMultiValueField, self).as_dict()
 
-        field_dict['fields'] = self.field.fields
+        fields = []
+        for field in self.field.fields:
+            # Fetch remote widget and convert to dict
+            _field = RemoteField(field=field).as_dict()
+            fields.append(_field)
+
+        field_dict['fields'] = fields
 
         return field_dict
 
@@ -284,3 +290,8 @@ class RemoteGenericIPAddressField(RemoteCharField):
 class RemoteSlugField(RemoteCharField):
     def as_dict(self):
         return super(RemoteSlugField, self).as_dict()
+
+
+class RemoteFilenameField(RemoteMultiValueField):
+    def as_dict(self):
+        return super(RemoteFilenameField, self).as_dict()

@@ -253,7 +253,8 @@ class RemoteMultiWidget(RemoteWidget):
         widget_list = []
         for widget in self.widget.widgets:
             # Fetch remote widget and convert to dict
-            widget_list.append()
+            _widget = RemoteWidget(widget=widget).as_dict()
+            widget_list.append(_widget)
 
         widget_dict['widgets'] = widget_list
 
@@ -273,3 +274,8 @@ class RemoteSplitDateTimeWidget(RemoteMultiWidget):
 class RemoteSplitHiddenDateTimeWidget(RemoteSplitDateTimeWidget):
     def as_dict(self):
         return super(RemoteSplitHiddenDateTimeWidget, self).as_dict()
+
+
+class RemoteFilenameWidget(RemoteMultiWidget):
+    def as_dict(self):
+        return super(RemoteFilenameWidget, self).as_dict()
