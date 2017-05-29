@@ -1,9 +1,13 @@
 # django-remote-forms
 
+![alt tag](https://img.shields.io/badge/django-1.3%2B%2C%201.9%2C%201.10-blue.svg)
+![alt tag](https://img.shields.io/badge/python-2.7%2C%203.3%2C%203.4%2C%203.5%2C%203.6-brightgreen.svg)
+##### Django 1.10 compatible 
+
 A package that allows you to serialize django forms, including fields and widgets into Python
 dictionary for easy conversion into JSON and expose over API
 
-Please go through my [djangocon US 2012 talk](http://www.slideshare.net/tarequeh/django-forms-in-a-web-api-world)
+Please go through Tareque Hossain's [djangocon US 2012 talk](http://www.slideshare.net/tarequeh/django-forms-in-a-web-api-world)
 to understand the problem sphere, motivations, challenges and implementation of Remote Forms
 
 ## Sample Implementation
