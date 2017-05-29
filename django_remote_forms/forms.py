@@ -48,7 +48,7 @@ class RemoteForm(object):
         self.excluded_fields |= (self.included_fields - self.all_fields)
 
         if not self.ordered_fields:
-            print(self.form.fields, type(self.form.fields))
+            # print(self.form.fields, type(self.form.fields))
             # if hasattr(self.form.fields, 'keyOrder'):
             #     self.ordered_fields = self.form.fields.keyOrder
             # else:
@@ -136,6 +136,7 @@ class RemoteForm(object):
             # Instantiate the Remote Forms equivalent of the field if possible
             # in order to retrieve the field contents as a dictionary.
             remote_field_class_name = 'Remote%s' % field.__class__.__name__
+            # print(remote_field_class_name, field.__class__.__name__)
             try:
                 remote_field_class = getattr(fields, remote_field_class_name)
                 remote_field = remote_field_class(
