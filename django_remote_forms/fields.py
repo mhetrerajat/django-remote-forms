@@ -1,9 +1,9 @@
 import datetime
 
 from django.conf import settings
-from django.utils.datastructures import SortedDict
-
 from django_remote_forms import logger, widgets
+
+from .datastructures import SortedDict
 
 
 class RemoteField(object):
@@ -38,9 +38,11 @@ class RemoteField(object):
         remote_widget_class_name = 'Remote%s' % self.field.widget.__class__.__name__
         try:
             remote_widget_class = getattr(widgets, remote_widget_class_name)
-            remote_widget = remote_widget_class(self.field.widget, field_name=self.field_name)
+            remote_widget = remote_widget_class(
+                self.field.widget, field_name=self.field_name)
         except Exception, e:
-            logger.warning('Error serializing %s: %s', remote_widget_class_name, str(e))
+            logger.warning('Error serializing %s: %s',
+                           remote_widget_class_name, str(e))
             widget_dict = {}
         else:
             widget_dict = remote_widget.as_dict()
@@ -101,7 +103,8 @@ class RemoteTimeField(RemoteField):
             if callable(field_dict['initial']):
                 field_dict['initial'] = field_dict['initial']()
 
-            # If initial value is datetime then convert it using first available input format
+            # If initial value is datetime then convert it using first
+            # available input format
             if (isinstance(field_dict['initial'], (datetime.datetime, datetime.time, datetime.date))):
                 if not len(field_dict['input_formats']):
                     if isinstance(field_dict['initial'], datetime.date):
@@ -112,7 +115,8 @@ class RemoteTimeField(RemoteField):
                         field_dict['input_formats'] = settings.DATETIME_INPUT_FORMATS
 
                 input_format = field_dict['input_formats'][0]
-                field_dict['initial'] = field_dict['initial'].strftime(input_format)
+                field_dict['initial'] = field_dict['initial'].strftime(
+                    input_format)
 
         return field_dict
 

@@ -7,6 +7,9 @@ except ImportError:
     use_setuptools()
     from setuptools import setup
 
+REQUIRES = []
+
+
 setup(
     name='django-remote-forms',
     version='0.0.1',
@@ -21,10 +24,7 @@ setup(
     package_data={
     },
     zip_safe=False,
-    requires=[
-    ],
-    install_requires=[
-    ],
+    install_requires=REQUIRES,
     classifiers=[
         'Development Status :: Pre Alpha',
         'Environment :: Web Environment',
